@@ -63,10 +63,16 @@
 			<TooltipValue>N/A</TooltipValue>
 			<!-- The number of positions in one revolution. -->
 			<Positions/>
+
 			<!-- The RPN code to run on one clockwise increment. -->
 			<OnIncrement/>
 			<!-- The RPN code to run on one anticlockwise decrement. -->
 			<OnDecrement/>
+            <!-- The RPN code to run on a push event. -->
+            <OnPush/>
+            <!-- The RPN code to run on a pull event. -->
+            <OnPull/>
+
 			<!-- The time that moving from one position to another should take, in seconds. -->
 			<AnimTime>0.25</AnimTime>
 			<!-- If highlighting the hovered GLTF node should be disabled. -->
@@ -107,6 +113,8 @@
 			<UseTemplate Name="Beh_Interaction_DiscreteKnob">
 				<OnIncrement>(O:SwitchPosition) 1 + (&gt;O:SwitchPosition) #OnIncrement#</OnIncrement>
 				<OnDecrement>(O:SwitchPosition) 1 - (&gt;O:SwitchPosition) #OnDecrement#</OnDecrement>
+                <OnPush>#OnPush#</OnPush>
+                <OnPull>#OnPull#</OnPull>
 			</UseTemplate>
 
 			<UseTemplate Name="Beh_Animation_Code">

@@ -333,10 +333,16 @@
 			<TooltipTitle/>
 			<!-- ID of the InputEvent to use for the tooltip. -->
 			<Tooltip/>
+
 			<!-- RPN code to run on increment. -->
 			<OnIncrement/>
 			<!-- RPN code to run on decrement. -->
 			<OnDecrement/>
+            <!-- RPN code to run on push. -->
+            <OnPush/>
+            <!-- RPN code to run on pull. -->
+            <OnPull/>
+
 			<!-- The amount along the drag axis for the switch to move one position in Lock mode. -->
 			<DragThreshold>0.1</DragThreshold>
 			<!-- If highlighting the hovered GLTF node should be disabled. -->
@@ -352,8 +358,10 @@
 			<Axis>X</Axis>
 			<LeftCursor>TurnLeft</LeftCursor>
 			<RightCursor>TurnRight</RightCursor>
+            <UpCursor>UpArrow</UpCursor>
+            <DownCursor>DownArrow</DownCursor>
 			<DragCursor>Grab</DragCursor>
-			<DragFlags>Lock+Unlock+LeftDrag+WheelUp+WheelDown</DragFlags>
+			<DragFlags>Lock+Unlock+LeftDrag+WheelUp+WheelDown+RightSingle+MiddleSingle</DragFlags>
 			<Callback>
 				(M:Event) 'WheelUp' scmi 0 == if{
 					#OnIncrement#
@@ -402,6 +410,14 @@
 						}
 					}
 				}
+                (M:Event) 'RightSingle' scmi 0 == if{
+                    #OnPull#
+                    quit
+                }
+                (M:Event) 'MiddleSingle' scmi 0 == if{
+                    #OnPush#
+                    quit
+                }
 			</DragCallback>
 		</Parameters>
 
